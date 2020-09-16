@@ -1,14 +1,12 @@
-import { firebaseAuth } from '../../config/firebaseConfig';
-
 const state = {
-	isLoggedIn: firebaseAuth().currentUser != null,
-	user: firebaseAuth().currentUser,
+	isLoggedIn: localStorage.getItem('user'),
+	user: localStorage.getItem('user'),
 }
 
 const mutations = {
 	'AUTH_STATUS_CHANGE' (state) {
-		state.isLoggedIn = firebaseAuth().currentUser != null;
-		state.user = firebaseAuth().currentUser;
+		state.isLoggedIn = localStorage.getItem('user');
+		state.user =localStorage.getItem('user');
 	}
 }
 

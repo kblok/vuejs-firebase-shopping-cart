@@ -1,4 +1,4 @@
-import { ref, firebaseAuth } from '../config/firebaseConfig';
+import { ref } from '../config/firebaseConfig';
 
 export const updateCart = ({
   commit
@@ -19,17 +19,20 @@ export const removeItemInCart = ({commit}, {item}) => {
 	commit('REMOVE_CART_ITEM', {item});
 }
 
-export const registerByEmail = (_, {email, password}) => {
-	return firebaseAuth().createUserWithEmailAndPassword(email, password);
-}
-
 export const logout = ({commit}) => {
   commit('SET_CART', []); // clear current cart
-  return firebaseAuth().signOut();
+  return localStorage.removeItem('user');
 }
 
 export function loginWithEmail (_, {email, password}) {
-  return firebaseAuth().signInWithEmailAndPassword(email, password);
+	if(email === 'admin@gmail.com' && password === 'admin') {
+		localStorage.setItem('user',  { 
+			uid: email, 
+			email: email, 
+			emailVerified: true });
+		return true;
+	}
+	return Promise.reject(new Error('Invalid user'));
 }
 
 export function listenToProductList({commit}) {
