@@ -39,12 +39,10 @@
       MessageComponent
     },
     methods: {
-      ...mapActions(['getShoppingCart', 'listenToProductList'])
+      ...mapActions(['getShoppingCart'])
     },
     created() {
-      let uid = this.$store.getters.currentUser.uid;
-      this.listenToProductList();
-      this.getShoppingCart({uid, currentCart: this.$store.getters.cartItemList});
+      this.getShoppingCart();
     }
   }
 </script>

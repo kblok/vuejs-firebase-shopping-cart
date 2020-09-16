@@ -26,9 +26,6 @@
         <li v-if="isLoggedIn" class="li-pointer nav-item">
           <a @click="logout" class="nav-link">Logout {{ userEmail }}</a>
         </li>
-        <router-link to="/register" tag="li" v-if="!isLoggedIn" class="nav-item" active-class="active">
-          <a class="nav-link">Register</a>
-        </router-link>
         <li>
           <router-link to="/cart" class="btn btn-success navbar-btn" tag="button">
             Checkout <span class="badge badge-light">{{ numItems }} ($ {{ cartValue }})</span>
